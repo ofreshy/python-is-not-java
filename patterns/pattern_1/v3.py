@@ -1,16 +1,13 @@
-from collections import namedtuple
+# Add characteristics here
 
-Point = namedtuple('Point', 'x,y', verbose=False)
+from characteristic import attributes
 
-p = Point(x=1, y=2)
-print(p)
 
-House = namedtuple('Chromosome', 'x,y', verbose=False)
+@attributes(["x", "y"])
+class Point(object):
+    pass
 
-assert Point(x=1, y=3) == House(x=1, y=3)
-
-p0 = Point(x=0, y=0)
-print(p0.x)
+print(Point(x=1, y=2))
 
 
 

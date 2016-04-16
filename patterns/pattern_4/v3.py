@@ -1,17 +1,23 @@
+from functools import wraps
 import math
+import sys
 import time
 
-from patterns.pattern_1.v3 import Point
+
+from patterns.pattern_1.v2 import Point
 
 
-def timeit(contains):
-    def wrapper(point):
-        start = time.time()
-        result = contains(point)
-        duration = time.time() - start
-        print(duration)
-        return result
-    return wrapper
+def write_time_to(writer):
+    def timeit(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            start = time.time()
+            result = func(*args, **kwargs)
+            duration = time.time() - start
+            writer.write(str(duration) + "\n")
+            return result
+        return wrapper
+    return timeit
 
 
 def distance(p1, p2):
@@ -29,7 +35,6 @@ class Circle(object):
 
         self.centre = centre
         self.radius = radius
-        self.contains = timeit(self._contains)
 
     @property
     def centre(self):
@@ -51,12 +56,14 @@ class Circle(object):
             raise ValueError
         self._radius = radius
 
-    def _contains(self, point):
+    @write_time_to(sys.stdout)
+    def contains(self, point):
         return distance(self._centre, point) <= self._radius
 
 
+
 circle = Circle(Point(0, 0), 6)
-circle.contains(Point(1, 0))
+circle.contains(Point(0, 0))
 
 
 

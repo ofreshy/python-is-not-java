@@ -1,20 +1,22 @@
+from functools import lru_cache, wraps
+import math
+import sys
 import time
 
-import math
-
-from patterns.pattern_1.v3 import Point
+from patterns.pattern_1.v2 import Point
 
 
-def timeit(func):
-    def wrapper(*args, **kwargs):
-        start = time.time()
-        result = func(*args, **kwargs)
-        duration = time.time() - start
-        print(duration)
-        return result
-    wrapper.__doc__ = func.__doc__
-    wrapper.__name__ = func.__name__
-    return wrapper
+def write_time_to(writer):
+    def timeit(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            start = time.time()
+            result = func(*args, **kwargs)
+            duration = time.time() - start
+            writer.write(str(duration) + "\n")
+            return result
+        return wrapper
+    return timeit
 
 
 def distance(p1, p2):
@@ -53,17 +55,14 @@ class Circle(object):
             raise ValueError
         self._radius = radius
 
-    @timeit
+    @write_time_to(writer=sys.stdout)
+    @lru_cache(maxsize=32)
     def contains(self, point):
         return distance(self._centre, point) <= self._radius
 
 
-
 circle = Circle(Point(0, 0), 6)
 circle.contains(Point(0, 0))
-
-
-
 
 
 

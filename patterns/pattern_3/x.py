@@ -1,4 +1,4 @@
-from patterns.pattern_1.v3 import Point
+from patterns.pattern_1.v2 import Point
 
 
 class Circle(object):

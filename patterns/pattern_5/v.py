@@ -1,4 +1,4 @@
-from patterns.pattern_1.v3 import Point
+from patterns.pattern_1.v2 import Point
 
 
 class Circle(object):
@@ -48,3 +48,6 @@ class Circle(object):
         if not isinstance(centre, Point):
             raise TypeError
         self._centre = centre
+
+# Yes, this is a singleton
+unit = Circle(Point(0, 0), 1)
