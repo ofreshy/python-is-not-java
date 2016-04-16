@@ -19,11 +19,3 @@ class Point(object):
 p = Point(1, 2)
 print(p)
 
-
-# Good
-# Looks and feels like Java
-
-# Bad
-# Very verbose
-# Can easily pass the methods
-# Python users will most likely access attributes directly

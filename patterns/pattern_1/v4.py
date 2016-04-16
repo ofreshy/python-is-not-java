@@ -10,13 +10,4 @@ class Point(object):
 print(Point(x=1, y=2))
 
 
-# Good
-# concise
-# informative
-
-
-# Bad
-# Its a mini DSL
-# Features are not in your control
-
 

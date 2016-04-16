@@ -64,7 +64,5 @@ class Circle(object):
 circle = Circle(Point(0, 0), 6)
 circle.contains(Point(0, 0))
 
-p1 = 3, 4
-
 
 

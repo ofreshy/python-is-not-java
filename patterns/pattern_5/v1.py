@@ -49,4 +49,5 @@ class Circle(object):
             raise TypeError
         self._centre = centre
 
+# Yes, this is a singleton
 unit = Circle(Point(0, 0), 1)

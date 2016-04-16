@@ -1,3 +1,3 @@
 """
-Where we talk about singelton s
+Where we talk about singelton
 """
