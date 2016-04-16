@@ -23,8 +23,8 @@ def hello():
 
 cache_func = lru_cache(maxsize=32)(hello)
 write_func = write_time_to(sys.stdout)(cache_func)
-print(write_func())
+res1 = write_func()
 
-print(write_time_to(sys.stdout)(lru_cache(maxsize=32)(hello)))
+res2 = write_time_to(sys.stdout)(lru_cache(maxsize=32)(hello))
 
 
